@@ -52,15 +52,12 @@ export default {
     addition() {
       this.result = Number(this.operand1) + Number(this.operand2);
     },
-
     subtraction() {
       this.result = Number(this.operand1) - Number(this.operand2);
     },
-
     division() {
       this.result = Math.floor(Number(this.operand1) / Number(this.operand2));
     },
-
     multiplication() {
       this.result = Number(this.operand1) * Number(this.operand2);
     }
