@@ -1,16 +1,41 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+
+    <!--
+    props - входные параметры компонента
+    в данном случае props это msg=""
+    -->
+    <HelloWorld msg="Здесь могла быть ваша реклама - Vue.js App" />
+
+    <!--
+    !важно!
+    биндим наш пропс, на значение из calculator.vue/data/text
+    что бы значение было булевым, его нужно забиндить, например:
+    :someNumber="false"
+    -->
+    <CalculatorApp v-bind:text="text" />
+
+    <!-- ** -->
+    <!-- 1: inline-выражение -->
+    <!-- <button v-on:click="c = a + b">summa</button> -->
+
+    <!-- 2: вызов метода обработчика с параметрами -->
+    <!-- <button v-on:click="doThat('hello', $event)"></button> -->
+
+    <!-- 3: вызов метода обработчика без параметров -->
+    <!-- <button v-on:click="doThis"></button> -->
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import CalculatorApp from "@/components/Calculator";
 
 export default {
   name: 'App',
   components: {
+    CalculatorApp,
     HelloWorld
   }
 }

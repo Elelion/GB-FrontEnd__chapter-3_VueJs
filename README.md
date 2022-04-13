@@ -1,24 +1,17 @@
-# vue-project
+## Vue.js
 
-## Project setup
-```
-npm install
-```
+Урок 1. Фреймворк Vue и его главные концепции
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+<br>
 
-### Compiles and minifies for production
-```
-npm run build
-```
+1. Установить vue-cli
 
-### Lints and fixes files
-```
-npm run lint
-```
+2. Создать новое приложение vue@2.x c использование vue-cli
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+3. Повторить код калькулятора
+
+4. Также в качестве домашнего задания мы предлагаем расширить возможности нашего
+   калькулятора который мы написали на уроке. Добавьте кнопки и возможность 
+   выполнения следующих действий:
+   ● Возведение в степень
+   ● Целочисленное деление
