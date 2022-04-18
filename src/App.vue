@@ -9,7 +9,7 @@
     <HelloWorld msg="Здесь могла быть ваша реклама - Vue.js App" />
 
     <!--
-    !важно!
+    !!!важно!!!
     биндим наш пропс, на значение из calculator.vue/data/text
     что бы значение было булевым, его нужно забиндить, например:
     :someNumber="false"
@@ -51,3 +51,7 @@ export default {
   margin-top: 60px;
 }
 </style>
+
+<!--
+1,27
+-->

@@ -2,19 +2,21 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <h2>{{ text }}</h2>
-    <hr>
+
+<!--    <hr>-->
 
     <!-- onBlur - событие при потери фокуса -->
-    <input type="text" v-model="textValue" @blur="onBlur('hi')">
+<!--    <input type="text" v-model="textValue" @blur="onBlur('hi')">-->
 
-    <input :value="textValue2" @input="textValue2 = $event.target.value">
-    <button @click="result++">Click {{result}}</button>
+<!--    <input :value="textValue2" @input="textValue2 = $event.target.value">-->
+<!--    <button @click="result++">Click {{result}}</button>-->
   </div>
 </template>
 
 <script>
 export default {
   name: 'HelloWorld',
+
   props: {
     msg: {
       type: String,
