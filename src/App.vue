@@ -6,7 +6,7 @@
     props - входные параметры компонента
     в данном случае props это msg=""
     -->
-    <HelloWorld msg="Здесь могла быть ваша реклама - Vue.js App" />
+<!--    <HelloWorld msg="Здесь могла быть ваша реклама - Vue.js App" />-->
 
     <!--
     !!!важно!!!
@@ -14,7 +14,8 @@
     что бы значение было булевым, его нужно забиндить, например:
     :someNumber="false"
     -->
-    <CalculatorApp v-bind:text="text" />
+<!--    <hr>-->
+<!--    <CalculatorApp v-bind:text="text" />-->
 
     <!-- ** -->
     <!-- 1: inline-выражение -->
@@ -25,18 +26,26 @@
 
     <!-- 3: вызов метода обработчика без параметров -->
     <!-- <button v-on:click="doThis"></button> -->
+<!--    <hr>-->
+<!--    <DifferentElements />-->
+
+    <MyPersonalCosts />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-import CalculatorApp from "@/components/Calculator";
+// import HelloWorld from './components/HelloWorld.vue'
+// import CalculatorApp from "@/components/Calculator";
+// import DifferentElements from "@/components/DifferentElements";
 
+import MyPersonalCosts from "@/components/MyPersonalCosts";
 export default {
   name: 'App',
   components: {
-    CalculatorApp,
-    HelloWorld
+    MyPersonalCosts
+    // DifferentElements,
+    // CalculatorApp,
+    // HelloWorld
   }
 }
 </script>
@@ -53,5 +62,5 @@ export default {
 </style>
 
 <!--
-1,27
+1-41
 -->

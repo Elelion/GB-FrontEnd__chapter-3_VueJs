@@ -20,7 +20,7 @@ slot - некое пространство через которые мы мож
 
 <script>
 export default {
-  name: "myButton",
+  name: "mySlots",
 
   data() {
     return {

@@ -1,7 +1,9 @@
 <template>
   <div>
     <div class="display">
-      <h1>{{ msg }}</h1>
+      <h1>./Calculator.vue</h1>
+      <h2>{{ msg }}</h2>
+
 
       <p>Число 1</p>
       <input v-model="operand1" type="number"/>
@@ -52,18 +54,8 @@
       </div>
     </div>
     <br>
-    <hr>
 
     <div class="keyboard">
-      <MyButton>
-        <template #icon="count">
-          + {{count}}
-        </template>
-        Нажать
-      </MyButton>
-      <MyButton />
-      <br>
-      <br>
       <button
         v-for="operand in operands"
         v-on:click="calculate(operand)"
@@ -74,7 +66,6 @@
       <button v-on:click="result = Math.pow(result, operand3)">pow</button>
     </div>
     <br>
-    <hr>
 
     <!-- :key - обязателен -->
     <p>Collections:</p>
@@ -92,10 +83,8 @@
 </template>
 
 <script>
-import MyButton from "@/components/myButton";
 export default {
   name: 'CalculatorApp',
-  components: {MyButton},
   props: {
     msg: {
       type: String,
@@ -294,7 +283,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .display {
-  border: 1px solid gray;
+
 }
 
 .keyboards {
