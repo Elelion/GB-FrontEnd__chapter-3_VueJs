@@ -9,6 +9,15 @@
 
     <div class="form-fields" v-if="show">
       <input type="text" v-model="date" placeholder="date" />
+
+      <!--
+      <select name="" id="" v-model="category" v-if="categoryList">
+        <option value="" v-for="(value, index) in categoryList" :key="index">
+          {{value}}
+        </option>
+      </select>
+      -->
+
       <input type="text" v-model="category" placeholder="category" />
       <input type="text" v-model="value" placeholder="value" />
 
@@ -49,7 +58,14 @@ export default {
        * подробнее тут:
        * https://ru.vuejs.org/v2/guide/components-custom-events.html
        */
-      this.$emit('addNewPayment', data)
+      // this.$emit('addNewPayment', data)
+
+      // за место $emit испольузем getters
+      this.$store.commit('addDataToPaymentsList', data);
+    },
+
+    async created() {
+      await this.$store.dispatch('fetchCategoryList');
     }
   },
 
@@ -62,7 +78,15 @@ export default {
 
       return `${d}.${m}.${y}`;
     },
+
+    categoryList() {
+      return this.$store.getters.getCategoryList;
+    }
   },
+
+  mounted() {
+
+  }
 }
 </script>
 
