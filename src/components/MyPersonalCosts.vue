@@ -74,7 +74,7 @@ export default {
       // берем данные из store
       paymentsList: [],
       cur: 1,
-      n: 5,
+      n: 4,
     }
   },
 
@@ -149,13 +149,9 @@ export default {
    * в момент создания, будет присвоин наш объект
    */
   created() {
-    this.paymentsList = this.fetchData();
-
     // вызываем наш actions из store, для ДО-заполнения данными
     this.$store.dispatch('fetchData');
 
-    console.log('created before mutations:');
-    console.log(this.$store.state);
     /**
      * вызываем нашу мутацию из store, $store.commit - для вызова мутации
      * setPaymentListData - название мутации,
@@ -169,10 +165,9 @@ export default {
      * из state
      */
     // this.setPaymentListData(this.fetchData());
-    this.MyMutation(this.fetchData());
 
-    console.log('created after mutations:');
-    console.log(this.$store.state);
+    this.MyMutation(this.fetchData());
+    this.paymentsList = this.fetchData();
   },
 
   mounted() {

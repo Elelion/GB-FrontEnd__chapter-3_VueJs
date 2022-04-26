@@ -3,6 +3,29 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
+const localDB = {
+  page1: [
+    { id: 1, date: "26.03.2020", category: "Food", value: 155 },
+    { id: 2, date: "27.04.2021", category: "Transport", value: 166 },
+    { id: 3, date: "28.05.2022", category: "Rest", value: 177 },
+  ],
+  page2: [
+    { id: 4, date: "26.03.2020", category: "Food", value: 255 },
+    { id: 5, date: "27.04.2021", category: "Transport", value: 266 },
+    { id: 6, date: "28.05.2022", category: "Rest", value: 277 },
+  ],
+  page3: [
+    { id: 7, date: "26.03.2020", category: "Food", value: 355 },
+    { id: 8, date: "27.04.2021", category: "Transport", value: 366 },
+    { id: 9, date: "28.05.2022", category: "Rest", value: 377 },
+  ],
+  page4: [
+    { id: 10, date: "26.03.2020", category: "Food", value: 455 },
+    { id: 11, date: "27.04.2021", category: "Transport", value: 466 },
+    { id: 12, date: "28.05.2022", category: "Rest", value: 477 },
+  ],
+}
+
 /**
  * все мутатции - синхронны
  * только мутации реактивно изменют состояние нашего хранилища
@@ -14,7 +37,15 @@ Vue.use(Vuex)
  */
 const mutations = {
   setPaymentListData(state, payload) {
-    state.paymentList = payload;
+    const newUniqIdObs = payload.filter((item) => {
+      return state.paymentListIds.indexOf(item.id) < 0;
+    });
+
+    const uniqIds = newUniqIdObs.map((obj) => obj.id);
+    state.paymentListIds.push(...uniqIds);
+
+    // state.paymentList = payload;
+    state.paymentList.push(...newUniqIdObs);
   },
 
   addDataToPaymentsList(state, payload) {
@@ -47,6 +78,7 @@ export default new Vuex.Store({
   state: {
     paymentList: [],
     categoryList: [],
+    paymentListIds: [],
   },
 
   actions: {
@@ -65,6 +97,15 @@ export default new Vuex.Store({
           } resolve(items);
         }, 2000)
       })).then(res => { commit('setPaymentListData', res); })
+    },
+
+    _fetchData({commit}, page) {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          const items = localDB[`page${page}`];
+          resolve (items);
+        }, 2000)
+      }).then((res) => { commit('setPaymentListData', res)} )
     },
 
     // кладем сюда наши категории
