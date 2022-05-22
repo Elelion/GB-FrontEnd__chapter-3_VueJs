@@ -1,4 +1,3 @@
-<!-- HomeView -->
 <template>
   <div class="home" :class="homeClass">
     <header>
@@ -38,8 +37,6 @@
           :n="n"
           @changePage="changePage" />
 
-<!--      <PaginationPage :total="paymentsList.length" :item="2" @page-changed="fetchData" />-->
-
 
 
     </main>
@@ -49,7 +46,6 @@
 <script>
 import PaymentDisplay from "@/components/PaymentDisplay";
 import PaymentAddForm from "@/components/PaymentAddForm";
-// import PaginationPage from "@/components/PaginationPage";
 
 import {
   // для ...mapMutations... и this.setPaymentListData(this.fetchData());
@@ -61,10 +57,9 @@ import {
 import MyPagination from "@/components/MyPagination";
 
 export default {
-  name: "MyPersonalCosts",
+  name: "HomeView",
   components: {
     MyPagination,
-    // PaginationPage,
     PaymentAddForm,
     PaymentDisplay
   },
@@ -176,8 +171,12 @@ export default {
      * те это ссылки на елементы
      */
     // this.$refs.paymentForm.getCurrentDate();
-    console.log('mounted:');
-    console.log(this.$refs.paymentForm.onClickSave);
+
+    if (!this.$route.params?.page || isNaN(this.$route.params.page)) {
+      return true;
+    }
+
+    this.cur = Number(this.$route.params.page);
   },
 }
 </script>

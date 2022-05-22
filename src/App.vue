@@ -1,67 +1,112 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-
-    <!--
-    props - входные параметры компонента
-    в данном случае props это msg=""
-    -->
-<!--    <HelloWorld msg="Здесь могла быть ваша реклама - Vue.js App" />-->
-
-    <!--
-    !!!важно!!!
-    биндим наш пропс, на значение из calculator.vue/data/text
-    что бы значение было булевым, его нужно забиндить, например:
-    :someNumber="false"
-    -->
-<!--    <hr>-->
-<!--    <CalculatorApp v-bind:text="text" />-->
-
-    <!-- ** -->
-    <!-- 1: inline-выражение -->
-    <!-- <button v-on:click="c = a + b">summa</button> -->
-
-    <!-- 2: вызов метода обработчика с параметрами -->
-    <!-- <button v-on:click="doThat('hello', $event)"></button> -->
-
-    <!-- 3: вызов метода обработчика без параметров -->
-    <!-- <button v-on:click="doThis"></button> -->
-<!--    <hr>-->
-<!--    <DifferentElements />-->
-
-    <MyPersonalCosts />
+    <v-app>
+      <v-main>
+        <v-app-bar
+          flat
+          color="blue"
+        >
+          <v-btn
+            plain
+            :ripple="false"
+            to="/dashboard"
+          >
+            Dashboard R
+          </v-btn>/
+          <v-btn
+            plain
+            :ripple="false"
+            to="/about"
+          >
+            About R
+          </v-btn>/
+          <v-btn
+            plain
+            :ripple="false"
+            to="/page404"
+          >
+            404 R
+          </v-btn>
+          /
+          <v-btn
+            plain
+            :ripple="false"
+            to="/payment"
+          >
+            New payment
+          </v-btn>
+          /
+          <v-btn
+            plain
+            :ripple="false"
+            to="/calc"
+          >
+            Calculator
+          </v-btn>
+          /
+        </v-app-bar>
+        <router-view />
+      </v-main>
+    </v-app>
+    <context-menu />
   </div>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
-// import CalculatorApp from "@/components/Calculator";
-// import DifferentElements from "@/components/DifferentElements";
+import { mapMutations } from "vuex";
+import ContextMenu from './components/ContextMenu/ContextMenu.vue';
 
-import MyPersonalCosts from "@/components/MyPersonalCosts";
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    MyPersonalCosts
-    // DifferentElements,
-    // CalculatorApp,
-    // HelloWorld
+    ContextMenu,
+  },
+  data() {
+    return {
+      page: "",
+      modalWindow: "",
+      modalHeader: "",
+      modalSettings: {}
+    };
+  },
+  mounted() {
+    this.$modal.EventBus.$on("show", this.onShown);
+    this.$modal.EventBus.$on("hide", this.onHide);
+    this.$store.dispatch("fetchData");
+  },
+  beforeDestroy() {
+    this.$modal.EventBus.$off("show", this.onShown);
+    this.$modal.EventBus.$off("hide", this.onHide);
+  },
+  methods: {
+    ...mapMutations(["setPaymentListData"]),
+    emitAction() {
+      this.addBtnIsShown = false;
+    },
+    addPayment(data) {
+      this.$store.commit("addDataToPaymentList", data);
+    },
+    goTopage(pageName) {
+      this.$router.push({
+        name: pageName
+      });
+    },
+    onHide() {
+      this.ModalWindoW = "";
+      this.modalHeader = "";
+      this.modalSettings = {};
+    },
+    onShown(data) {
+      this.ModalWindoW = data.name;
+      this.modalHeader = data.headerName;
+      this.modalSettings = data.modalSettings;
+    }
   }
-}
+};
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
-
-<!--
-54
-11-28
--->

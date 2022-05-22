@@ -61,6 +61,11 @@ export default {
 
    & > div {
      padding: 10px;
+     cursor: pointer;
+
+     &:hover {
+       background: #41B883;
+     }
 
      &.active {
        background: #36495E;
